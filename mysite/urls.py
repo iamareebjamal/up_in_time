@@ -21,10 +21,7 @@ from alarm.views import set_alarm_with_time
 from alarm.views import set_alarm_with_duration
 
 urlpatterns = [
-    url(r'^time/$', current_datetime),
-    url(r'^time/plus/(\d{1,2})/$', hours_ahead),
     url(r'^admin/', admin.site.urls),
-    url(r'^hello/$', hello),
     url(r'^alarm/$', alarm),
     url(r'^time', set_alarm_with_time),
     url(r'^duration/', set_alarm_with_duration),
