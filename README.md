@@ -4,4 +4,9 @@ It is a django-powered web app which can create reminders or alarms just by a si
 Just clone the git repo, cd into it and run ```./manage.py runserver```
 and then visit here[http://127.0.0.1:8000/alarm/]
 
+## Dependencies
+
+* python
+* django v1.9.8
+
 ### Happy Time Saving
