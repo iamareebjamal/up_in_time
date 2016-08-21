@@ -5,20 +5,25 @@ from django.http import HttpResponse
 
 # Create your views here.
 
+
+# in request's GET method : alarm_time is of the form HH:MM in the 12 hr system or
+# 24 hr system depending on your input, so always use 24 hr input.
+
 def check_alarm_time(alarm_time_u):
 	now = datetime.datetime.now().strftime("%H:%M")
 	alarm_time = unicodedata.normalize('NFKD', alarm_time_u).encode('ascii','ignore')
+	alarm_time = alarm_time
 	if not alarm_time > now:
 		raise IOError
 	return True
 
 def set_alarm(alarm_time_u):
-	now = datetime.datetime.now()
+	now = datetime.datetime.now().strftime("%H:%M")
 	alarm_time = unicodedata.normalize('NFKD', alarm_time_u).encode('ascii','ignore')
-	while now != alarm_time:
-		now = datetime.datetime.now()
-		time.sleep(60)
-	webbrowser.open("templates/success.html")
+	while now < alarm_time:
+		now = datetime.datetime.now().strftime("%H:%M")
+		time.sleep(5)
+	#webbrowser.open("templates/success.html") --> Do the action now
 
 def alarm(request):
 	return render(request, "alarm_base.html", {"now": datetime.datetime.now()})
@@ -33,7 +38,7 @@ def set_alarm_with_time(request):
 	message that an alarm has been set.
 	"""
 	alarm_time = request.GET.get("alarm_time", "Not Set")
-	now = datetime.datetime.now()
+	now = datetime.datetime.now().strftime("%H:%M")
 	s_dict = {"alarm_time" : alarm_time, 'now' : now}
 	try:
 		check_alarm_time(alarm_time)
@@ -41,7 +46,8 @@ def set_alarm_with_time(request):
 		return render(request, "alarm_fail.html", s_dict)
 	webbrowser.open("templates/alarm_set.html")
 	set_alarm(alarm_time)
-
+	s_dict = {"alarm_time":alarm_time}
+	return render(request, "success.html", s_dict)
 
 def set_alarm_with_duration(request):
 	duration_u = request.GET.get("alarm_duration", "Not Set")
