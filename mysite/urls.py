@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^alarm/$', alarm),
     url(r'^time', set_alarm_with_time),
     url(r'^duration/', set_alarm_with_duration),
+    url(r'^templates/alarm_set$', msg_set),
 ]

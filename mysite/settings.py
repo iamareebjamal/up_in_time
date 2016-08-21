@@ -56,7 +56,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/rahul/Desktop/code/django/django_hello/templates'],
+        'DIRS': ['/home/rahul/Desktop/code/django/Alarm/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
