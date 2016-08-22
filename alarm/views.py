@@ -63,7 +63,10 @@ def set_alarm_with_duration(request):
 	alarm_time = now + datetime.timedelta(hours = alarm_hours, minutes = alarm_minutes)
 	s_dict = {"alarm_time" : alarm_time, 'now' : now}
 	try:
-		set_alarm(alarm_time)
-		return render(request, "alarm_set.html", s_dict)
-	except:
+		check_alarm_time(alarm_time)
+	except IOError:
 		return render(request, "alarm_fail.html", s_dict)
+	webbrowser.open("templates/alarm_set.html")
+	set_alarm(alarm_time)
+	s_dict = {"alarm_time":alarm_time}
+	return render(request, "success.html", s_dict)
