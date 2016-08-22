@@ -46,7 +46,6 @@ def set_alarm_with_time(request):
 		return render(request, "alarm_fail.html", s_dict)
 	webbrowser.open("templates/alarm_set.html")
 	set_alarm(alarm_time)
-	s_dict = {"alarm_time":alarm_time}
 	return render(request, "success.html", s_dict)
 
 def set_alarm_with_duration(request):
