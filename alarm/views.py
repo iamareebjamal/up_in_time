@@ -17,7 +17,7 @@ def set_alarm(alarm_time):
 		time.sleep(5)
 	
 def alarm(request):
-	return render(request, "alarm_base.html", {"now": datetime.datetime.now()})
+	return render(request, "index.html", {"now": datetime.datetime.now()})
 
 def msg_set(request):
 	return render(request, "alarm_set.html")
