@@ -10,11 +10,11 @@
 		{% if error %}
 			<font color="red">Please enter a future time.</font>
 		{% endif %}
-		<form action = "/time" method = "get" >
+		<form action = "/alarm" method = "get" >
 			<input type = 'time' name = "alarm_time">
 			<input type = "submit" value = "Yep! Wake me UP!">
 		</form>
-		<form action="/duration" method = "get">
+		<form action="" method = "get">
 			or specify the duration: <input type="time" name="alarm_duration">
 			<input type = "submit" value = "Rest that long">	
 		</form>
