@@ -8,5 +8,6 @@ and then visit here[http://127.0.0.1:8000/alarm/]
 
 * python
 * django v1.9.8
+* Make sure that pop ups are allowed in your browser.
 
 ### Happy Time Saving
