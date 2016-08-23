@@ -2,12 +2,14 @@ from django.shortcuts import render
 import datetime, unicodedata, webbrowser, time
 
 def check_alarm_time(alarm_time):
+	# Consider alarm_time is a string(strftime)
 	now = datetime.datetime.now().strftime("%H:%M")
 	if not alarm_time > now:
 		raise IOError
 	return True
 
 def set_alarm(alarm_time):
+	# Consider alarm_time is a string(strftime)
 	now = datetime.datetime.now().strftime("%H:%M")
 	#alarm_time = unicodedata.normalize('NFKD', alarm_time_u).encode('ascii','ignore')
 	
@@ -35,7 +37,8 @@ def set_alarm_with_time(request):
 	try:
 		check_alarm_time(alarm_time)
 	except IOError:
-		return render(request, "alarm_fail.html", s_dict)
+		s_dict["error"] = True
+		return render(request, "index.html", s_dict)
 	webbrowser.open("templates/alarm_set.html")
 	set_alarm(alarm_time)
 	return render(request, "success.html", s_dict)
@@ -56,7 +59,8 @@ def set_alarm_with_duration(request):
 	try:
 		check_alarm_time(alarm_time.strftime("%H:%M"))
 	except IOError:
-		return render(request, "alarm_fail.html", s_dict)
+		s_dict["error"] = True
+		return render(request, "index.html", s_dict)
 	webbrowser.open("templates/alarm_set.html")
 	set_alarm(alarm_time.strftime("%H:%M"))
 	s_dict = {"alarm_time":alarm_time}

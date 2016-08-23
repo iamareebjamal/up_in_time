@@ -7,6 +7,9 @@
 	</HEAD>
 	<BODY>
 		<h1>At what time do you think you can kick some ass? </h1>
+		{% if error %}
+			<font color="red">Please enter a future time.</font>
+		{% endif %}
 		<form action = "/time" method = "get" >
 			<input type = 'time' name = "alarm_time">
 			<input type = "submit" value = "Yep! Wake me UP!">
