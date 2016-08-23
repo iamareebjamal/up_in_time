@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Original:  Rick Johnson (frj11@ev1.net) -->
+<!-- Web Site:  http://rickjohnson.tripod.com -->
+
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://www.javascriptsource.com -->
+
+<!-- Begin
+function popupWin() {
+text =  "<html>\n<head>\n<title>Pop Window</title>\n<body>\n";
+text += "<center>\n<br>";
+text += "<a href='http://www.javascriptsource.com/new' target='_blank'><h2>New JavaScripts</h2></a>";
+text += "</center>\n</body>\n</html>\n";
+setTimeout('windowProp(text)', 3000); 		// delay 3 seconds before opening
+}
+function windowProp(text) {
+newWindow = window.open('','newWin','width=300,height=100');
+newWindow.document.write(text);
+setTimeout('closeWin(newWindow)', 5000);	// delay 5 seconds before closing
+}
+function closeWin(newWindow) {
+newWindow.close();				// close small window and depart
+}
+//  End -->
+</script>
+
+</HEAD>
+<BODY onLoad="popupWin()">
+<center>
+This demo will open a small popup window 3 seconds after the page is loaded and close the window after it has been open for 5 seconds.
+</center>
+
+<p><center>
+<font face="arial, helvetica" size"-2">Free JavaScripts provided<br>
+by <a href="http://javascriptsource.com">The JavaScript Source</a></font>
+</center><p>
+</BODY>
+</HTML>
