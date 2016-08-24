@@ -5,11 +5,10 @@ text = `
 			<title>Pop Window</title>
 		</head>
 		<body>
-			<h1>This is your alarm for {{alarm_time}}</h1>
 			<audio controls autoplay>
-				<source src="http://www.w3schools.com/tags/horse.ogg" type="audio/ogg">
+				{% load staticfiles %}
+				<source src="/static/alarm/Argon.ogg" type="audio/ogg">
 				Your browser does not support the audio element.
-			<!--<source src="horse.mp3" type="audio/mpeg"> -->
 			</audio>
 			<center>
 			<br>
@@ -27,4 +26,3 @@ function windowProp(text) {
 function closeWin(newWindow) {
 	newWindow.close();				// close small window and depart
 }
-//  End -->
