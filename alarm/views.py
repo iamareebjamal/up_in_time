@@ -40,6 +40,7 @@ def get_alarm_time(duration):
 #####################################################################################
 
 def alarm(request):
+	errors =[]
 	if "alarm_time" in request.GET:
 		alarm_time_u = request.GET.get("alarm_time", "Not Set")
 		alarm_time = uni_to_str(alarm_time_u)
@@ -62,8 +63,7 @@ def alarm(request):
 		check_and_render(request, alarm_time, s_dict)
 		webbrowser.open("templates/alarm_set.html")
 		set_alarm(alarm_time)
-		s_dict = {"alarm_time":alarm_time}
 		return render(request, "success.html", s_dict)
 	
 	# If no request.
-	return render(request, "index.html", {"now": datetime.datetime.now()})
+	return render(request, "index.html", {"now": datetime.datetime.now(), 'errors': errors})
