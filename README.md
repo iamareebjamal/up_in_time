@@ -10,12 +10,17 @@ It is a django-powered web app which can create reminders or alarms just by a si
 ##Still To-Do:
 
 * Obviously, give it some *better* looks.
+* Use django's template system
 * Look for a way by which webbrowser.open("alarm set") which opens tab ==only in the default browser== can open it in the same browser perhaps by manipulating HTTP_USER_AGENT.
 * ~~Embed music in pop up so that there is actually an alarm~~
 * ~~Seperate the Javascript and HTML in pop-up.~~
 * Add customization to alarm screen- Figure out a way to give input directlty from HTTP to JS
-* Make and add a favicon
+* ~~Make and add a favicon~~
 * Add contact us, about_us page.
+	
+### Far away:
+* Add functionality like sending automatic emails and messages(look up twillio) at the given time.
+* Make the website responsive.
 
 ##Features
 

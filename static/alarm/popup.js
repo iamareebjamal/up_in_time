@@ -2,6 +2,7 @@ function popupWin() {
 text = `
 	<html>
 		<head>
+			<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
 			<title>Pop Window</title>
 		</head>
 		<body>

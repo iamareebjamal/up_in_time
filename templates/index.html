@@ -1,12 +1,14 @@
 <DOCTYPE HTML5>
 <HTML>
 	<HEAD>
+		{% load staticfiles %}
+		<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
 		<TITLE>
 			Set an Alarm
 		</TITLE>
 	</HEAD>
 	<BODY>
-		<h1>At what time do you think you can kick some ass? </h1>
+		<h1>At what time should I wake you up?</h1>
 		{% if error %}
 			<font color="red">Please enter a future time.</font>
 		{% endif %}
