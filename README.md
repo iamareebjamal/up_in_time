@@ -2,17 +2,17 @@
 It is a django-powered web app which can create reminders or alarms just by a single click.
 
 Just clone the git repo, cd into it and run ```./manage.py runserver```
-and then visit here[http://127.0.0.1:8000/alarm/]
+and then visit [here](http://127.0.0.1:8000/alarm/)
 
 ##Still To-Do:
 
-* Obviously, give it some better looks.
-* Embed music in pop up so that there is actually an alarm
+* Obviously, give it some ==better== looks.
+* ~~Embed music in pop up so that there is actually an alarm~~
 * Seperate the Javascript and HTML in pop-up.
 * Add customization to alarm screen- Figure out a way to give input directlty from HTTP to JS
 * Make and add a favicon
 * Add contact us, about_us page.
-* Look for a way by which webbrowser.open("alarm set") which opens tab only in the default browser can open it in the same browser perhaps by manipulating HTTP_USER_AGENT.
+* Look for a way by which webbrowser.open("alarm set") which opens tab ==only in the default browser== can open it in the same browser perhaps by manipulating HTTP_USER_AGENT.
 
 ##Features
 

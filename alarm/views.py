@@ -66,4 +66,5 @@ def alarm(request):
 		return render(request, "success.html", s_dict)
 	
 	# If no request.
-	return render(request, "index.html", {"now": datetime.datetime.now(), 'errors': errors})
+	browser = request.META['HTTP_USER_AGENT']
+	return render(request, "index.html", {"now": datetime.datetime.now(), 'errors': errors, 'browser': request.META['HTTP_USER_AGENT']})
