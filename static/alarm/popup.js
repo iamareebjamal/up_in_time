@@ -6,14 +6,16 @@ text = `
 			<title>Pop Window</title>
 		</head>
 		<body>
+			<center>
 			<audio controls autoplay loop>
 				{% load staticfiles %}
 				<source src="/static/alarm/Argon.ogg" type="audio/ogg">
 				Your browser does not support the audio element.
 			</audio>
-			<center>
 			<br>
 				Tring!!! Tring!!!!!!!!!!.
+			<br>
+			<a href = "/alarm"> Set an alarm again </a>		
 			</center>
 		</body>
 	</html>`;
