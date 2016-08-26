@@ -9,11 +9,11 @@ It is a django-powered web app which can create reminders or alarms just by a si
 
 ##Still To-Do:
 
-* Obviously, give it some *better* looks.
+* Obviously, give it some *better* looks - Design GUI and choose colors.
+* We can entirely change the whole popup by using [this]() library but it would again increase dependency.
 * Add an alert message when user tries to close the alarm tab or as soon as the user clicks on setting alarm, we can display a danger box on this page.
 * Add a message input and display it on tha alarm screen. Again JS should communicate with HTTP GET request or you can write the message in a database.
 * optimize the code - Use django's template system
-* Design GUI and choose colors.
 * Look for a way by which webbrowser.open("alarm set") which opens tab only in the default browser can open it in the same browser perhaps by manipulating HTTP_USER_AGENT.
 * ~~Embed music in pop up so that there is actually an alarm~~
 * ~~Seperate the Javascript and HTML in pop-up.~~

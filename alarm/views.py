@@ -67,3 +67,4 @@ def alarm(request):
 	
 	# If no request.
 	return render(request, "index.html", {"now": datetime.datetime.now(), 'errors': errors,})
+	
