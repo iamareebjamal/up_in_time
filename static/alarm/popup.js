@@ -13,6 +13,8 @@ text = `
 				Your browser does not support the audio element.
 			</audio>
 			<br>
+				I a testing django variables: {{alarm_time}}
+				Hopefully, it should print alarm_time
 				Tring!!! Tring!!!!!!!!!!.
 			<br>
 			<a href = "/alarm"> Set an alarm again </a>		
@@ -22,7 +24,7 @@ text = `
 	setTimeout('windowProp(text)', 10); 		// delay 10 milliseconds before opening
 }
 function windowProp(text) {
-	newWindow = window.open('','newWin','width=300,height=400');
+	newWindow = window.open('','newWin','width=50,height=700');
 	newWindow.document.write(text);
 	setTimeout('closeWin(newWindow)', 5 * 60 * 1000);	// delay 5 minutes before closing
 }

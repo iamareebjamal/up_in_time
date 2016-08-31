@@ -9,8 +9,10 @@ It is a django-powered web app which can create reminders or alarms just by a si
 
 ##Still To-Do:
 
+* There is soethng wrong with the JS of success and it is not linking to <popup class="js"></popup>
 * Obviously, give it some *better* looks - Design GUI and choose colors.
-* We can entirely change the whole popup by using [this]() library but it would again increase dependency.
+* Add data validation
+* We can entirely change the whole popup by using [this](https://pypi.python.org/pypi/django-popup-forms/1.0.3) library but it would again increase dependency.
 * Add an alert message when user tries to close the alarm tab or as soon as the user clicks on setting alarm, we can display a danger box on this page.
 * Add a message input and display it on tha alarm screen. Again JS should communicate with HTTP GET request or you can write the message in a database.
 * optimize the code - Use django's template system
