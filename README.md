@@ -7,17 +7,20 @@ It is a django-powered web app which can create reminders or alarms just by a si
 * Run ```./manage.py runserver```
 * Visit [here](http://127.0.0.1:8000/alarm/) (If you haven't changed the default port - 8000)
 
+##Strategy:
+* When user opens the home page - the index.html it is handled by alarm view that creates a database entry with mapping of id to alarm_time,thus making a POST request and then redirects to success.html
+* Now, success.html is mapped to create_alarm view and in turn it checks for the alarm_time written for the current IP address and it then displays the current time and then the javascript can check for that when the alarm time comes, we can play the music requested.
+
 ##Still To-Do:
 
 * Obviously, give it some *better* looks.
-* Add an alert message when user tries to close the alarm tab or as soon as the user clicks on setting alarm, we can display a danger box on this page.
-* Add a message input and display it on tha alarm screen. Again JS should communicate with HTTP GET request or you can write the message in a database.
+* Add an alert message when user tries to close the alarm tab.
+* Add a message input and display it on tha alarm screen for eminding purposes.
 * optimize the code - Use django's template system
 * Design GUI and choose colors.
-* Look for a way by which webbrowser.open("alarm set") which opens tab only in the default browser can open it in the same browser perhaps by manipulating HTTP_USER_AGENT.
 * ~~Embed music in pop up so that there is actually an alarm~~
 * ~~Seperate the Javascript and HTML in pop-up.~~
-* Add customization to alarm screen- Figure out a way to give input directlty from HTTP to JS
+* Add customization to alarm screen.
 * ~~Make and add a favicon~~
 * Add contact us, about_us page.
 	
@@ -36,6 +39,4 @@ It is a django-powered web app which can create reminders or alarms just by a si
 * python
 * django v1.9.8
 * Make sure that pop ups are allowed in your browser.
-
-### Happy Time Saving
 
