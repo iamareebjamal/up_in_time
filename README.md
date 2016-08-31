@@ -9,7 +9,7 @@ It is a django-powered web app which can create reminders or alarms just by a si
 
 ##Strategy:
 * When user opens the home page - the index.html it is handled by alarm view that creates a database entry with mapping of id to alarm_time,thus making a POST request and then redirects to success.html
-* Now, success.html is mapped to create_alarm view and in turn it checks for the alarm_time written for the current IP address and it then displays the current time and then the javascript can check for that when the alarm time comes, we can play the music requested.
+* Now, success.html is mapped to create_alarm view and in turn it checks for the alarm_time written for the current IP address and it then displays the current time on the page and at the same time javascript can check for the alarm time and we can play the music.
 
 ##Still To-Do:
 
