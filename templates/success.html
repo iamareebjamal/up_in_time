@@ -1,10 +1,14 @@
 <HTML>
 	<HEAD>
+<<<<<<< HEAD
 		{% load staticfiles %}		
 		
 		<link rel="script" type="text/javascript" href="popup.js"/>
 
 		
+=======
+	{% load staticfiles %}
+>>>>>>> c2a00b29a56dd927e3fe28c98daef5d5aa9ec66c
 		<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
 		
 		<script type="text/javascript" href = "/home/rahul/Desktop/code/django/Alarm/static/alarm/popup.js"></script>
@@ -47,9 +51,9 @@
 		
 		<TITLE>Happy Alarms</TITLE>
 	</HEAD>
-	<BODY onLoad="popupWin()">
+	<BODY>
+		<h1> Your al;arm for {{alarm_time}}
 		<p>
-			Your Alarm!
 			<BR>
 			Hope so that I woke you up!
 		</p>

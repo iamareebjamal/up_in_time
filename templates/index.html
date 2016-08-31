@@ -19,11 +19,11 @@
 		{% if error %}
 			<font color="red">Please enter a future time.</font>
 		{% endif %}
-		<form action = "/alarm" method = "get" >
+		<form action = "" method = "post" >{% csrf_token %}
 			<input type = 'time' name = "alarm_time">
 			<input type = "submit" value = "Yep! Wake me UP!" onclick="showDiv('toggle')">
 		</form>
-		<form action="" method = "get">
+		<form action="" method = "post">{% csrf_token %}
 			or specify the duration: <input type="time" name="alarm_duration">
 			<input type = "submit" value = "Rest that long" onclick="showDiv('toggle')">
 		</form>

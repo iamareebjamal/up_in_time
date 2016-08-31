@@ -7,19 +7,20 @@ It is a django-powered web app which can create reminders or alarms just by a si
 * Run ```./manage.py runserver```
 * Visit [here](http://127.0.0.1:8000/alarm/) (If you haven't changed the default port - 8000)
 
+##Strategy:
+* When user opens the home page - the index.html it is handled by alarm view that creates a database entry with mapping of id to alarm_time,thus making a POST request and then redirects to success.html
+* Now, success.html is mapped to create_alarm view and in turn it checks for the alarm_time written for the current IP address and it then displays the current time and then the javascript can check for that when the alarm time comes, we can play the music requested.
+
 ##Still To-Do:
 
-* There is soethng wrong with the JS of success and it is not linking to <popup class="js"></popup>
-* Obviously, give it some *better* looks - Design GUI and choose colors.
-* Add data validation
-* We can entirely change the whole popup by using [this](https://pypi.python.org/pypi/django-popup-forms/1.0.3) library but it would again increase dependency.
-* Add an alert message when user tries to close the alarm tab or as soon as the user clicks on setting alarm, we can display a danger box on this page.
-* Add a message input and display it on tha alarm screen. Again JS should communicate with HTTP GET request or you can write the message in a database.
+* Obviously, give it some *better* looks.
+* Add an alert message when user tries to close the alarm tab.
+* Add a message input and display it on tha alarm screen for eminding purposes.
 * optimize the code - Use django's template system
-* Look for a way by which webbrowser.open("alarm set") which opens tab only in the default browser can open it in the same browser perhaps by manipulating HTTP_USER_AGENT.
+* Design GUI and choose colors.
 * ~~Embed music in pop up so that there is actually an alarm~~
 * ~~Seperate the Javascript and HTML in pop-up.~~
-* Add customization to alarm screen- Figure out a way to give input directlty from HTTP to JS
+* Add customization to alarm screen.
 * ~~Make and add a favicon~~
 * Add contact us, about_us page.
 	
@@ -38,6 +39,4 @@ It is a django-powered web app which can create reminders or alarms just by a si
 * python
 * django v1.9.8
 * Make sure that pop ups are allowed in your browser.
-
-### Happy Time Saving
 
