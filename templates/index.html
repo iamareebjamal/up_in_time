@@ -9,9 +9,10 @@
 	</HEAD>
 	<BODY>
 		<h1>At what time should I wake you up?</h1>
-		{% if error %}
-			<font color="red">Please enter a future time.</font>
-		{% endif %}
+		{% for error in errors %}
+			<font color="red">{{error}}</font>
+			<BR>
+		{% endfor %}
 		<form action = "" method = "post" >{% csrf_token %}
 			<input type = 'time' name = "alarm_time">
 			<input type = "submit" value = "Yep! Wake me UP!">

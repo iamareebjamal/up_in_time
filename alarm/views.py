@@ -10,11 +10,12 @@ def check_alarm_time(alarm_time):
 		return False
 	return True
 
-def check_and_render(request, alarm_time, s_dict):
+def check_and_render(request, alarm_time, s_dict, errors):
 	if not check_alarm_time(alarm_time):
-		error = True
-		s_dict["error"] = error
-		return render(request, "index.html", s_dict)
+		error = "Please Enter a future time"
+		errors.append(error)
+		s_dict["errors"] = error
+		return s_dict
 
 def uni_to_str(uni):
 	return unicodedata.normalize('NFKD', uni).encode('ascii','ignore')
@@ -45,18 +46,20 @@ def check_and_save(request, alarm_time):
 			break
 
 	if current_alarm == None:
-		current_alarm = Alarm(alarm=alarm_time, ip_address=ip)
+		current_alarm = Alarm(alarm_time=alarm_time, ip_address=ip)
 	else:
-		current_alarm.alarm = alarm_time
+		current_alarm.alarm_time = alarm_time
 
 	current_alarm.save()
 
 #####################################################################################
 
 def alarm(request):
+	"""
+	Validate the input given by the user, report the errors and if no errors found  add it to the database.
+	"""
 	errors = []
-	if "alarm_time" in request.POST:
-		
+	if "alarm_time" in request.POST and request.POST.get("alarm_time", None) != "":
 		# Extract the information about the alarm_time
 		alarm_time_u = request.POST.get("alarm_time", "Not Set")
 		
@@ -64,7 +67,12 @@ def alarm(request):
 		alarm_time = uni_to_str(alarm_time_u)
 		
 		# Make datetime objects.
-		alarm_time = datetime.datetime.strptime(alarm_time, "%H:%M")
+		try:
+			alarm_time = datetime.datetime.strptime(alarm_time, "%H:%M")
+		except ValueError:
+			errors.append("Please enter valid time.")
+			return render(request, "index.html", {'errors' : errors})
+		
 		now = datetime.datetime.now()
 		
 		# Write it to database
@@ -76,9 +84,10 @@ def alarm(request):
 		
 		# Preparing HTML variables.
 		s_dict = {"alarm_time" : alarm_time, 'now' : now}
-		check_and_render(request, alarm_time, s_dict)
+		s_dict = check_and_render(request, alarm_time, s_dict, errors)
 		
-		return redirect('/success')
+		if not errors:
+			return redirect('/success')
 	
 	elif "alarm_duration" in request.POST:
 		# Extract the information about the alarm_time
@@ -101,11 +110,14 @@ def alarm(request):
 		
 		# Prepare HTML variables.
 		s_dict = {"alarm_time" : alarm_time, 'now' : now}
-		check_and_render(request, alarm_time, s_dict)
+		s_dict = check_and_render(request, alarm_time, s_dict, errors)
 		
-		return redirect('/success')
+		if not errors:
+			return redirect('/success')
 	
 	# If no request.
+	if request.POST.get("alarm_time", None) == "":
+		errors.append("Please enter valid Time")
 	return render(request, "index.html", {"now": datetime.datetime.now(), 'errors': errors,})
 
 def create_alarm(request):
@@ -113,7 +125,7 @@ def create_alarm(request):
 	alarm_time = datetime.datetime.now()
 	for alarm in Alarm.objects.all():
 		if ip == alarm.ip_address:
-			alarm_time = alarm.alarm
+			alarm_time = alarm.alarm_time
 			break
 
 	alarm_time = alarm_time.strftime("%H:%M:%S")

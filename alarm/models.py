@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 class Alarm(models.Model):
-	alarm = models.DateTimeField()
+	alarm_time = models.DateTimeField()
 	ip_address = models.GenericIPAddressField()
 
 	def __unicode__(self):
