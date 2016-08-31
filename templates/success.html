@@ -1,13 +1,12 @@
 <HTML>
 	<HEAD>
-	{% load staticfiles %}		
-		<script src="{% static "alarm/popup.js" %}" type="text/javascript"></script>
+	{% load staticfiles %}
 		<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
 		<TITLE>Happy Alarms</TITLE>
 	</HEAD>
-	<BODY onLoad="popupWin()">
+	<BODY>
+		<h1> Your al;arm for {{alarm_time}}
 		<p>
-			Your Alarm!
 			<BR>
 			Hope so that I woke you up!
 		</p>
