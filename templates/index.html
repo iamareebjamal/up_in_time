@@ -3,13 +3,6 @@
 	<HEAD>
 		{% load staticfiles %}
 		<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
-		<link REL="StyleSheet" TYPE="text/css" HREF="{% static "alarm/index.css" %}">
-		<script type="text/javascript">
-			function showDiv(toggle){
-				document.getElementById(toggle).style.display = 'block';
-			}
-		</script>
-
 		<TITLE>
 			Set an Alarm
 		</TITLE>
@@ -21,18 +14,12 @@
 		{% endif %}
 		<form action = "" method = "post" >{% csrf_token %}
 			<input type = 'time' name = "alarm_time">
-			<input type = "submit" value = "Yep! Wake me UP!" onclick="showDiv('toggle')">
+			<input type = "submit" value = "Yep! Wake me UP!">
 		</form>
 		<form action="" method = "post">{% csrf_token %}
 			or specify the duration: <input type="time" name="alarm_duration">
-			<input type = "submit" value = "Rest that long" onclick="showDiv('toggle')">
+			<input type = "submit" value = "Rest that long">
 		</form>
 		<h3>It's now {{now}}</h3>
-		<div class="alert info" id="toggle" style="display:none">
-			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-			Please <strong>don't Close or STOP</strong> loading this page.
-		</div>
-
-
 	</BODY>
 </HTML>

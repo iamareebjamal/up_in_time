@@ -19,17 +19,7 @@ def check_and_render(request, alarm_time, s_dict):
 def uni_to_str(uni):
 	return unicodedata.normalize('NFKD', uni).encode('ascii','ignore')
 
-def set_alarm(alarm_time):
-	# Consider alarm_time is a string(strftime)
-	now = datetime.datetime.now().strftime("%H:%M")
-	#alarm_time = unicodedata.normalize('NFKD', alarm_time_u).encode('ascii','ignore')
-	
-	# It blocks the loading period so that page loads only after alarm time
-	while now < alarm_time:
-		now = datetime.datetime.now().strftime("%H:%M")
-		time.sleep(5)
-
-def get_alarm_time(duration):
+def get_alarm_time_from_duration(duration):
 	try:
 		alarm_hours = int(duration[:2])
 		alarm_minutes = int(duration[3:])
@@ -37,8 +27,6 @@ def get_alarm_time(duration):
 		alarm_hours = 0
 		alarm_minutes = 0
 	return (alarm_hours, alarm_minutes)
-
-#####################################################################################
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -48,52 +36,77 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
+def check_and_save(request, alarm_time):
+	ip = get_client_ip(request)
+	current_alarm = None
+	for alarm in Alarm.objects.all():
+		if ip == alarm.ip_address:
+			current_alarm = alarm
+			break
+
+	if current_alarm == None:
+		current_alarm = Alarm(alarm=alarm_time, ip_address=ip)
+	else:
+		current_alarm.alarm = alarm_time
+
+	current_alarm.save()
+
+#####################################################################################
+
 def alarm(request):
-	errors =[]
+	errors = []
 	if "alarm_time" in request.POST:
+		
+		# Extract the information about the alarm_time
 		alarm_time_u = request.POST.get("alarm_time", "Not Set")
+		
+		# Convert from unicode to python string
 		alarm_time = uni_to_str(alarm_time_u)
+		
+		# Make datetime objects.
+		alarm_time = datetime.datetime.strptime(alarm_time, "%H:%M")
+		now = datetime.datetime.now()
+		
+		# Write it to database
+		check_and_save(request, alarm_time)
+		
+		# Convert them from datetime objects to python strings
 		now = datetime.datetime.now().strftime("%H:%M")
+		alarm_time = alarm_time.strftime("%H:%M")
+		
+		# Preparing HTML variables.
 		s_dict = {"alarm_time" : alarm_time, 'now' : now}
 		check_and_render(request, alarm_time, s_dict)
-		#webbrowser.open("templates/alarm_set.html")
-		#set_alarm(alarm_time)
-		return render(request, "success.html", s_dict)
+		
+		return redirect('/success')
 	
 	elif "alarm_duration" in request.POST:
+		# Extract the information about the alarm_time
 		duration_u = request.POST.get("alarm_duration", "Not Set")
+		
+		# Convert from unicode to python string
 		duration = uni_to_str(duration_u)
-		(alarm_hours, alarm_minutes) = get_alarm_time(duration)
+		(alarm_hours, alarm_minutes) = get_alarm_time_from_duration(duration)
+		
+		# Create datetime objects
 		now = datetime.datetime.now()
 		alarm_time = now + datetime.timedelta(hours = alarm_hours, minutes = alarm_minutes)
+		
+		# Save the ip and time in database
+		check_and_save(request, alarm_time)	
+		
+		# Convert the time objects to string formats.
 		now = now.strftime("%H:%M")
-
-		ip = get_client_ip(request)
-		current_alarm = None
-		for alarm in Alarm.objects.all():
-			if ip == alarm.ip_address:
-				current_alarm = alarm
-				break
-
-		if current_alarm == None:
-			current_alarm = Alarm(alarm=alarm_time, ip_address=ip)
-		else:
-			current_alarm.alarm = alarm_time
-
-		current_alarm.save()
-
 		alarm_time = alarm_time.strftime("%H:%M")
+		
+		# Prepare HTML variables.
 		s_dict = {"alarm_time" : alarm_time, 'now' : now}
 		check_and_render(request, alarm_time, s_dict)
-		#webbrowser.open("templates/alarm_set.html")
-		#set_alarm(alarm_time)
+		
 		return redirect('/success')
 	
 	# If no request.
 	return render(request, "index.html", {"now": datetime.datetime.now(), 'errors': errors,})
-<<<<<<< HEAD
-	
-=======
 
 def create_alarm(request):
 	ip = get_client_ip(request)
@@ -105,7 +118,5 @@ def create_alarm(request):
 
 	alarm_time = alarm_time.strftime("%H:%M:%S")
 	now = datetime.datetime.now().strftime("%H:%M")
-	print(alarm_time)
 	s_dict = {"alarm_time" : alarm_time, 'now' : now}
 	return render(request, "success.html", s_dict)
->>>>>>> c2a00b29a56dd927e3fe28c98daef5d5aa9ec66c

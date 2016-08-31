@@ -1,58 +1,13 @@
 <HTML>
 	<HEAD>
-<<<<<<< HEAD
 		{% load staticfiles %}		
-		
-		<link rel="script" type="text/javascript" href="popup.js"/>
 
-		
-=======
-	{% load staticfiles %}
->>>>>>> c2a00b29a56dd927e3fe28c98daef5d5aa9ec66c
 		<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon"/>
-		
-		<script type="text/javascript" href = "/home/rahul/Desktop/code/django/Alarm/static/alarm/popup.js"></script>
-		
-		<script type="text/javascript">
-			function popupWin() {
-			text = `
-				<html>
-					<head>
-						<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
-						<title>Pop Window</title>
-					</head>
-					<body>
-						<center>
-						<audio controls autoplay loop>
-							{% load staticfiles %}
-							<source src="/static/alarm/Argon.ogg" type="audio/ogg">
-							Your browser does not support the audio element.
-						</audio>
-						<br>
-							I a testing django variables: {{alarm_time}}
-							Hopefully, it should print alarm_time
-							Tring!!! Tring!!!!!!!!!!.
-						<br>
-						<a href = "/alarm"> Set an alarm again </a>		
-						</center>
-					</body>
-				</html>`;
-				setTimeout('windowProp(text)', 10); 		// delay 10 milliseconds before opening
-			}
-			function windowProp(text) {
-				newWindow = window.open('','newWin','width=50,height=700');
-				newWindow.document.write(text);
-				setTimeout('closeWin(newWindow)', 5 * 60 * 1000);	// delay 5 minutes before closing
-			}
-			function closeWin(newWindow) {
-				newWindow.close();				// close small window and depart
-			}
-		</script>
 		
 		<TITLE>Happy Alarms</TITLE>
 	</HEAD>
 	<BODY>
-		<h1> Your al;arm for {{alarm_time}}
+		<h1> Your alarm for {{alarm_time}} </h1>
 		<p>
 			<BR>
 			Hope so that I woke you up!

@@ -14,6 +14,7 @@ It is a django-powered web app which can create reminders or alarms just by a si
 ##Still To-Do:
 
 * Obviously, give it some *better* looks.
+* Add a level of validation for IP and time.
 * Add an alert message when user tries to close the alarm tab.
 * Add a message input and display it on tha alarm screen for eminding purposes.
 * optimize the code - Use django's template system
