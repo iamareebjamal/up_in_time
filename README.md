@@ -13,6 +13,7 @@ It is a django-powered web app which can create reminders or alarms just by a si
 
 ##Still To-Do:
 
+* Do something with the timezone, it is getting really getting conusing.
 * Obviously, give it some *better* looks.
 * Add a level of validation for IP and time.
 * Add an alert message when user tries to close the alarm tab.

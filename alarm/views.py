@@ -6,7 +6,7 @@ from alarm.models import Alarm
 def check_alarm_time(alarm_time):
 	# Consider alarm_time is a string(strftime)
 	now = datetime.datetime.now().strftime("%H:%M")
-	if not alarm_time > now:
+	if not alarm_time >= now:
 		return False
 	return True
 
